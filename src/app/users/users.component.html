@@ -1,10 +1,17 @@
+<input class="border border-gray-300 rounded px-5 py-1.5 mb-5"
+       placeholder="Search..."
+       [formControl]="searchTerm"
+>
+
+<p class="mb-5">{{ totalUsers() }}</p>
+
 @if (loading()) {
   <p>Loading ...</p>
 } @else {
-  <table cdk-table [dataSource]="users()">
-    <!-- Position Column -->
-    <ng-container cdkColumnDef="position">
-      <th cdk-header-cell *cdkHeaderCellDef>No.</th>
+  <table cdk-table [dataSource]="users()" class="table">
+    <!-- ID Column -->
+    <ng-container cdkColumnDef="_id">
+      <th cdk-header-cell *cdkHeaderCellDef>ID</th>
       <td cdk-cell *cdkCellDef="let element"> {{ element._id }} </td>
     </ng-container>
 
@@ -14,8 +21,45 @@
       <td cdk-cell *cdkCellDef="let element"> {{ element.email }} </td>
     </ng-container>
 
-    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- Age Column -->
+    <ng-container cdkColumnDef="age">
+      <th cdk-header-cell *cdkHeaderCellDef>Age</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.age }} </td>
+    </ng-container>
+
+    <!-- Balance Column -->
+    <ng-container cdkColumnDef="balance">
+      <th cdk-header-cell *cdkHeaderCellDef>Balance</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.balance }} </td>
+    </ng-container>
+
+    <!-- Company Column -->
+    <ng-container cdkColumnDef="company">
+      <th cdk-header-cell *cdkHeaderCellDef>Company</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.company }} </td>
+    </ng-container>
+
+    <!-- FavoriteFruits Column -->
+    <ng-container cdkColumnDef="favoriteFruit">
+      <th cdk-header-cell *cdkHeaderCellDef>Favorite Fruits</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.favoriteFruit }} </td>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container cdkColumnDef="address">
+      <th cdk-header-cell *cdkHeaderCellDef>Address</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.address }} </td>
+    </ng-container>
+
+    <!-- isActive Column -->
+    <ng-container cdkColumnDef="isActive">
+      <th cdk-header-cell *cdkHeaderCellDef>Is active</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.isActive ? 'Yse' : 'No' }} </td>
+    </ng-container>
+
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns()"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns();"></tr>
   </table>
 }
 

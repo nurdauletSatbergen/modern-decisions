@@ -21,11 +21,21 @@ export interface UsersState {
   users: User[];
   filter: UsersFilter;
   loading: boolean;
+  tableColumns: (keyof User)[];
+  total: number;
 }
 
 export interface UsersFilter {
   searchTerm: string;
   pageSize: number;
   pageIndex: number;
-  sortBy: keyof User | null;
+  sort: {
+    column: keyof User | null;
+    direction: "asc" | "desc" | null;
+  }
+}
+
+export interface PaginatedResponse<T> {
+  value: T[];
+  total: number;
 }
