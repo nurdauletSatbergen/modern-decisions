@@ -16,9 +16,9 @@ import { DATA } from '../../data';
   providedIn: 'root'
 })
 export class UsersService {
-  users$: Observable<User[]> = of(DATA);
+  private readonly users$: Observable<User[]> = of(DATA);
 
-  state = signal<UsersState>({
+  private state = signal<UsersState>({
     users: [],
     filter: {
       searchTerm: '',
