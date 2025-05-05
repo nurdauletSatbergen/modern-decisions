@@ -1,12 +1,24 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { UsersFilter, UsersState } from './user.model';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, map, tap } from 'rxjs';
+import {User, UsersFilter, UsersState} from './user.model';
+import {
+  BehaviorSubject,
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  Observable,
+  of,
+  switchAll,
+  switchMap,
+  tap
+} from 'rxjs';
 import { DATA } from '../../data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  users$: Observable<User[]> = of(DATA);
+
   state = signal<UsersState>({
     users: [],
     filter: {
@@ -36,10 +48,7 @@ export class UsersService {
           loading: true
         }))),
         debounceTime(3000),
-        map(filter => {
-          return DATA;
-        }),
-
+        switchMap(() => this.users$),
       )
       .subscribe(value => {
         this.state.update(state => ({...state, users: value, loading: false }));

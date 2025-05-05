@@ -1,7 +1,22 @@
 @if (loading()) {
   <p>Loading ...</p>
+} @else {
+  <table cdk-table [dataSource]="users()">
+    <!-- Position Column -->
+    <ng-container cdkColumnDef="position">
+      <th cdk-header-cell *cdkHeaderCellDef>No.</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element._id }} </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container cdkColumnDef="email">
+      <th cdk-header-cell *cdkHeaderCellDef>Email</th>
+      <td cdk-cell *cdkCellDef="let element"> {{ element.email }} </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 }
 
-@for (user of users(); track user._id) {
-  <p>{{ user.email }}</p>
-}
+
