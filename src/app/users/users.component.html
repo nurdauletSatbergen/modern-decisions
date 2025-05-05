@@ -1,0 +1,7 @@
+@if (loading()) {
+  <p>Loading ...</p>
+}
+
+@for (user of users(); track user._id) {
+  <p>{{ user.email }}</p>
+}

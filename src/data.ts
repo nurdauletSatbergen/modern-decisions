@@ -1,6 +1,6 @@
-import {User} from './app/user.model';
+import { User } from './app/users/user.model';
 
-export const dats: User[] = [
+export const DATA: User[] = [
   {
     _id: '5fe1933e71260abb214c869e',
     isActive: false,

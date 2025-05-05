@@ -16,3 +16,16 @@ export interface UserName {
   first: string;
   last?: string;
 }
+
+export interface UsersState {
+  users: User[];
+  filter: UsersFilter;
+  loading: boolean;
+}
+
+export interface UsersFilter {
+  searchTerm: string;
+  pageSize: number;
+  pageIndex: number;
+  sortBy: keyof User | null;
+}
