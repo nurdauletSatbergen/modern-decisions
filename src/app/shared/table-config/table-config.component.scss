@@ -1,0 +1,6 @@
+@use "tailwindcss";
+
+:host {
+  display: block;
+  @apply bg-white p-5 rounded;
+}

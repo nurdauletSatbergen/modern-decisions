@@ -1,0 +1,8 @@
+<ul>
+  @for (column of columns(); track column) {
+    <li class="py-1.5 px-4 border border-gray-300 rounded mb-2 flex items-center gap-5">
+      <input type="checkbox" class="cursor-pointer" checked>
+      {{ column }}
+    </li>
+  }
+</ul>

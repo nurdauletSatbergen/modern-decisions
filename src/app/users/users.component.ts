@@ -6,16 +6,25 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { SortHeaderComponent } from '../shared/sort-header/sort-header.component';
 import { PaginationComponent } from '../shared/pagination/pagination.component';
 import { LoaderComponent } from '../shared/loader/loader.component';
+import {Dialog, DialogConfig} from '@angular/cdk/dialog';
+import {TableConfigComponent} from '../shared/table-config/table-config.component';
 
 @Component({
   selector: 'app-users',
-  imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent, PaginationComponent, LoaderComponent],
+  imports: [
+    CdkTableModule,
+    ReactiveFormsModule,
+    SortHeaderComponent,
+    PaginationComponent,
+    LoaderComponent
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit {
   private usersService = inject(UsersService);
+  private dialog = inject(Dialog);
   users = this.usersService.users;
   loading = this.usersService.loading;
   displayedColumns = this.usersService.tableColumns;
@@ -43,5 +52,14 @@ export class UsersComponent implements OnInit {
       pageSize,
       pageIndex: 1
     })
+  }
+
+  openConfig() {
+    this.dialog.open(TableConfigComponent, {
+      minWidth: '500px',
+      data: {
+        animal: 'panda',
+      },
+    });
   }
 }

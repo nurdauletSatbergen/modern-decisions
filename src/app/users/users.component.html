@@ -1,8 +1,15 @@
-<input class="border border-gray-300 rounded px-5 py-1.5 mb-5"
-       placeholder="Search..."
-       [formControl]="searchTerm"
->
 
+<div class="flex items-center gap-4 mb-5">
+  <input class="border border-gray-300 rounded px-5 py-1.5"
+         placeholder="Search..."
+         [formControl]="searchTerm"
+  >
+
+  <button class="px-5 py-1.5 bg-indigo-600 text-white rounded" (click)="openConfig()">
+    Table config
+  </button>
+
+</div>
 <div class="grow overflow-y-auto">
   @if (loading()) {
     <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
@@ -42,13 +49,13 @@
 
       <!-- FavoriteFruits Column -->
       <ng-container cdkColumnDef="favoriteFruit">
-        <th cdk-header-cell *cdkHeaderCellDef>Favorite Fruits</th>
+        <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="favoriteFruit">Favorite Fruits</th>
         <td cdk-cell *cdkCellDef="let element"> {{ element.favoriteFruit }} </td>
       </ng-container>
 
       <!-- Address Column -->
       <ng-container cdkColumnDef="address">
-        <th cdk-header-cell *cdkHeaderCellDef>Address</th>
+        <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="address">Address</th>
         <td cdk-cell *cdkCellDef="let element"> {{ element.address }} </td>
       </ng-container>
 
