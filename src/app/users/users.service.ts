@@ -26,7 +26,7 @@ export class UsersService {
       pageIndex: 1,
       sort: {
         column: null,
-        direction: 'asc'
+        direction: null
       }
     },
     total: 0,
@@ -51,6 +51,8 @@ export class UsersService {
       total: this.total(),
     }
   });
+
+  sorting = computed(() => this.filter().sort);
 
 
   usersSub = new BehaviorSubject<Partial<UsersFilter>>(this.filter());
@@ -84,7 +86,7 @@ export class UsersService {
           user.address.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
-        if (sort.column) {
+        if (sort.column && sort.direction) {
 
           filtered.sort((a, b) => {
             const valueA =

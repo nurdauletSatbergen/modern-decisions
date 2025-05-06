@@ -13,12 +13,20 @@ import { User } from '../../users/user.model';
 export class SortHeaderComponent {
   ref = input.required<string>();
   private usersService = inject(UsersService);
+  sorting = this.usersService.sorting;
 
   sort(): void {
     this.usersService.usersSub.next({
       sort: {
         column: this.ref() as keyof User,
-        direction: this.usersService.filter().sort.direction === 'asc' ? 'desc' : 'asc'
+        direction:
+          this.usersService.filter().sort.column !== this.ref()
+            ? 'asc'
+            : this.usersService.filter().sort.direction === 'asc'
+              ? 'desc'
+              : this.usersService.filter().sort.direction === 'desc'
+                ? null
+                : 'asc'
       },
       pageIndex: 1
     })
