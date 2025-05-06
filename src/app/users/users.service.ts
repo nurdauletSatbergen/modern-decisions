@@ -44,6 +44,13 @@ export class UsersService {
   loading = computed(() => this.state().loading);
   filter = computed(() => this.state().filter);
   tableColumns = computed(() => this.state().tableColumns);
+  pagination = computed(() => {
+    return {
+      pageIndex: this.filter().pageIndex,
+      pageSize: this.filter().pageSize,
+      total: this.total()
+    }
+  });
 
 
   usersSub = new BehaviorSubject<Partial<UsersFilter>>(this.filter());

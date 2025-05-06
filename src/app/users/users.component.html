@@ -11,13 +11,13 @@
   <table cdk-table [dataSource]="users()" class="table">
     <!-- ID Column -->
     <ng-container cdkColumnDef="_id">
-      <th cdk-header-cell *cdkHeaderCellDef>ID</th>
+      <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="_id">ID</th>
       <td cdk-cell *cdkCellDef="let element"> {{ element._id }} </td>
     </ng-container>
 
     <!-- Email Column -->
     <ng-container cdkColumnDef="email">
-      <th cdk-header-cell *cdkHeaderCellDef>Email</th>
+      <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="email">Email</th>
       <td cdk-cell *cdkCellDef="let element"> {{ element.email }} </td>
     </ng-container>
 
@@ -35,7 +35,7 @@
 
     <!-- Company Column -->
     <ng-container cdkColumnDef="company">
-      <th cdk-header-cell *cdkHeaderCellDef>Company</th>
+      <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="company">Company</th>
       <td cdk-cell *cdkCellDef="let element"> {{ element.company }} </td>
     </ng-container>
 

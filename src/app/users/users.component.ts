@@ -3,10 +3,11 @@ import { UsersService } from './users.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import {SortHeaderComponent} from '../shared/sort-header/sort-header.component';
 
 @Component({
   selector: 'app-users',
-  imports: [CdkTableModule, ReactiveFormsModule],
+  imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
