@@ -5,10 +5,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { SortHeaderComponent } from '../shared/sort-header/sort-header.component';
 import { PaginationComponent } from '../shared/pagination/pagination.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @Component({
   selector: 'app-users',
-  imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent, PaginationComponent],
+  imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent, PaginationComponent, LoaderComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })

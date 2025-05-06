@@ -4,59 +4,63 @@
 >
 
 <div class="grow overflow-y-auto">
-  <table cdk-table [dataSource]="users()" class="table">
-    <!-- ID Column -->
-    <ng-container cdkColumnDef="_id">
-      <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="_id">ID</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element._id }} </td>
-    </ng-container>
+  @if (loading()) {
+    <app-loader></app-loader>
+  } @else {
+    <table cdk-table [dataSource]="users()" class="table">
+      <!-- ID Column -->
+      <ng-container cdkColumnDef="_id">
+        <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="_id">ID</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element._id }} </td>
+      </ng-container>
 
-    <!-- Email Column -->
-    <ng-container cdkColumnDef="email">
-      <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="email">Email</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.email }} </td>
-    </ng-container>
+      <!-- Email Column -->
+      <ng-container cdkColumnDef="email">
+        <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="email">Email</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.email }} </td>
+      </ng-container>
 
-    <!-- Age Column -->
-    <ng-container cdkColumnDef="age">
-      <th cdk-header-cell *cdkHeaderCellDef>Age</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.age }} </td>
-    </ng-container>
+      <!-- Age Column -->
+      <ng-container cdkColumnDef="age">
+        <th cdk-header-cell *cdkHeaderCellDef>Age</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.age }} </td>
+      </ng-container>
 
-    <!-- Balance Column -->
-    <ng-container cdkColumnDef="balance">
-      <th cdk-header-cell *cdkHeaderCellDef>Balance</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.balance }} </td>
-    </ng-container>
+      <!-- Balance Column -->
+      <ng-container cdkColumnDef="balance">
+        <th cdk-header-cell *cdkHeaderCellDef>Balance</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.balance }} </td>
+      </ng-container>
 
-    <!-- Company Column -->
-    <ng-container cdkColumnDef="company">
-      <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="company">Company</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.company }} </td>
-    </ng-container>
+      <!-- Company Column -->
+      <ng-container cdkColumnDef="company">
+        <th cdk-header-cell *cdkHeaderCellDef app-sort-header ref="company">Company</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.company }} </td>
+      </ng-container>
 
-    <!-- FavoriteFruits Column -->
-    <ng-container cdkColumnDef="favoriteFruit">
-      <th cdk-header-cell *cdkHeaderCellDef>Favorite Fruits</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.favoriteFruit }} </td>
-    </ng-container>
+      <!-- FavoriteFruits Column -->
+      <ng-container cdkColumnDef="favoriteFruit">
+        <th cdk-header-cell *cdkHeaderCellDef>Favorite Fruits</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.favoriteFruit }} </td>
+      </ng-container>
 
-    <!-- Address Column -->
-    <ng-container cdkColumnDef="address">
-      <th cdk-header-cell *cdkHeaderCellDef>Address</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.address }} </td>
-    </ng-container>
+      <!-- Address Column -->
+      <ng-container cdkColumnDef="address">
+        <th cdk-header-cell *cdkHeaderCellDef>Address</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.address }} </td>
+      </ng-container>
 
-    <!-- isActive Column -->
-    <ng-container cdkColumnDef="isActive">
-      <th cdk-header-cell *cdkHeaderCellDef>Is active</th>
-      <td cdk-cell *cdkCellDef="let element"> {{ element.isActive ? 'Yse' : 'No' }} </td>
-    </ng-container>
+      <!-- isActive Column -->
+      <ng-container cdkColumnDef="isActive">
+        <th cdk-header-cell *cdkHeaderCellDef>Is active</th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.isActive ? 'Yse' : 'No' }} </td>
+      </ng-container>
 
 
-    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns()"></tr>
-    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns();"></tr>
-  </table>
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns()"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns();"></tr>
+    </table>
+  }
 </div>
 
 <app-pagination [pageIndex]="pagination().pageIndex"
