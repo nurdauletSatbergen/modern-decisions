@@ -3,11 +3,12 @@ import { UsersService } from './users.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
-import {SortHeaderComponent} from '../shared/sort-header/sort-header.component';
+import { SortHeaderComponent } from '../shared/sort-header/sort-header.component';
+import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 @Component({
   selector: 'app-users',
-  imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent],
+  imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent, PaginationComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
@@ -17,6 +18,7 @@ export class UsersComponent implements OnInit {
   loading = this.usersService.loading;
   displayedColumns = this.usersService.tableColumns;
   totalUsers = this.usersService.total;
+  pagination = this.usersService.pagination;
 
   searchTerm = new FormControl('', { nonNullable: true });
 
@@ -29,5 +31,16 @@ export class UsersComponent implements OnInit {
       .subscribe(searchTerm => {
         this.usersService.usersSub.next({ searchTerm });
       });
+  }
+
+  pageChange(pageIndex: number): void {
+    this.usersService.usersSub.next({ pageIndex })
+  }
+
+  sizeChange(pageSize: number): void {
+    this.usersService.usersSub.next({
+      pageSize,
+      pageIndex: 1
+    })
   }
 }

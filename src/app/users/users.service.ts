@@ -48,7 +48,7 @@ export class UsersService {
     return {
       pageIndex: this.filter().pageIndex,
       pageSize: this.filter().pageSize,
-      total: this.total()
+      total: this.total(),
     }
   });
 

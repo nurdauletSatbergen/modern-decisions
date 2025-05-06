@@ -1,0 +1,16 @@
+<ul class="px-2 py-2">
+  @for (page of pages(); track page) {
+    <li (click)="pageChange.emit(page)"
+        class="page-item"
+        [class.active]="page === pageIndex()"
+    >
+      {{ page }}
+    </li>
+  }
+</ul>
+
+<select [value]="pageSize()" (change)="onSelect($event)">
+  @for (size of sizeOptions(); track size) {
+    <option [value]="size" [selected]="pageSize() === size">{{ size }}</option>
+  }
+</select>
