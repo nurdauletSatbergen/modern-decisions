@@ -3,11 +3,7 @@
        [formControl]="searchTerm"
 >
 
-<p class="mb-5">{{ totalUsers() }}</p>
-
-@if (loading()) {
-  <p>Loading ...</p>
-} @else {
+<div class="grow overflow-y-auto">
   <table cdk-table [dataSource]="users()" class="table">
     <!-- ID Column -->
     <ng-container cdkColumnDef="_id">
@@ -61,7 +57,7 @@
     <tr cdk-header-row *cdkHeaderRowDef="displayedColumns()"></tr>
     <tr cdk-row *cdkRowDef="let row; columns: displayedColumns();"></tr>
   </table>
-}
+</div>
 
 <app-pagination [pageIndex]="pagination().pageIndex"
                 [pageSize]="pagination().pageSize"
@@ -70,4 +66,3 @@
                 (sizeChange)="sizeChange($event)"
 >
 </app-pagination>
-

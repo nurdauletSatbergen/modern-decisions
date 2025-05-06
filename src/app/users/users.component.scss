@@ -1,8 +1,11 @@
 @use "tailwindcss";
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 20px;
+  height: 100vh;
 }
 
 .table {
