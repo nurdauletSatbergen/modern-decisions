@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
         distinctUntilChanged()
       )
       .subscribe(searchTerm => {
-        this.usersService.usersSub.next({ searchTerm, sort: { column: null, direction: null } });
+        this.usersService.usersSub.next({ searchTerm, sort: { column: null, direction: null }, pageIndex: 1 });
       });
   }
 
