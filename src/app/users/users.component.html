@@ -5,7 +5,9 @@
 
 <div class="grow overflow-y-auto">
   @if (loading()) {
-    <app-loader></app-loader>
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+      <app-loader></app-loader>
+    </div>
   } @else {
     <table cdk-table [dataSource]="users()" class="table">
       <!-- ID Column -->

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -11,14 +11,14 @@ import { LoaderComponent } from '../shared/loader/loader.component';
   selector: 'app-users',
   imports: [CdkTableModule, ReactiveFormsModule, SortHeaderComponent, PaginationComponent, LoaderComponent],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit {
   private usersService = inject(UsersService);
   users = this.usersService.users;
   loading = this.usersService.loading;
   displayedColumns = this.usersService.tableColumns;
-  totalUsers = this.usersService.total;
   pagination = this.usersService.pagination;
 
   searchTerm = new FormControl('', { nonNullable: true });
@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
         distinctUntilChanged()
       )
       .subscribe(searchTerm => {
-        this.usersService.usersSub.next({ searchTerm });
+        this.usersService.usersSub.next({ searchTerm, sort: { column: null, direction: null } });
       });
   }
 
